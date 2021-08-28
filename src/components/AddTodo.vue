@@ -13,7 +13,7 @@ export default {
   data: () => {
   },
   methods: {
-
+    ...mapActions(['postTodos']),
   }
 }
 </script>

@@ -1,20 +1,34 @@
 import axios from 'axios';
 
 const state = {
-  //define your state properties here
+  todos: null,
 };
 
 const getters ={
- //getter methods here
+  allTodos: () => {
+    return state.todos;
+  }
 };
 
 
 const actions ={
- //define your actions here
+  async fetchTodos({ commit }) {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/todos'); 
+    commit('setTodos', response.data)
+  },
+  async postTodo({ commit }, title) {
+    const response = await axios.post('https://jsonplaceholder.typicode.com/todos', { title, completed: false});
+    commit('addTodo', response.data) 
+  },
 };
 
 const mutations ={
- //definite your mutations here
+  setTodos: (state, todo) => {
+   state.todos = todo;
+  },
+  addTodo: (state, newTodo) => {
+    state.todos.unshift(newTodo);
+   }
 };
 
 

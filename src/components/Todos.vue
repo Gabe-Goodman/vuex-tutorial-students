@@ -8,15 +8,16 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Todos',
   methods: {
-    //this is where our actions will go
+    ...mapActions(['fetchTodos']),
   },
-  //computed: //uncomment this! this is where we will call our getters
+  computed: mapGetters(['allTodos']),
   created() {
-    //upon creation it should call our fetchPhotos action
+    this.fetchTodos();
   }
 }
 </script>

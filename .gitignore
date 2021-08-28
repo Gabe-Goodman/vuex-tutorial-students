@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 /dist
+vuex_readme.pdf
 
 
 # local env files
