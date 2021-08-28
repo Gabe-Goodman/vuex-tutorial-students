@@ -2,8 +2,10 @@
   <div>
     <h3>Add Todo</h3>
     <div class="add">
-      <input type="text" id="input"/>
-      <button v-on:click="getToDo">Add Todo</button>
+      <Form @submit="onSubmit">
+        <input type="text" v-model="title" id="input">
+        <input type="submit">
+      </Form>
     </div>
   </div>
 </template>
@@ -14,15 +16,16 @@ import { mapActions } from 'vuex';
 export default {
   name: "AddTodo",
   data: () => {
+    // For using v-model
+    return {
+      title:''
+    }
   },
   methods: {
     ...mapActions(['postTodo']),
-    getToDo: function() {
-      const toDo = document.getElementById('input').value;
-      console.log(toDo);
-      const response = this.postTodo(toDo);
-      console.log('I ran!');
-      console.log(response);
+    onSubmit: function(e) {
+      e.preventDefault();
+      this.postTodo(this.title);
     }
   }
 }
