@@ -2,18 +2,28 @@
   <div>
     <h3>Add Todo</h3>
     <div class="add">
+      <input type="text" id="input"/>
+      <button v-on:click="getToDo">Add Todo</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 
 export default {
   name: "AddTodo",
   data: () => {
   },
   methods: {
-    ...mapActions(['postTodos']),
+    ...mapActions(['postTodo']),
+    getToDo: function() {
+      const toDo = document.getElementById('input').value;
+      console.log(toDo);
+      const response = this.postTodo(toDo);
+      console.log('I ran!');
+      console.log(response);
+    }
   }
 }
 </script>
